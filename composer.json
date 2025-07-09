@@ -1,0 +1,26 @@
+{
+    "name": "thiago/fitcalc",
+    "description": "Calculadora de IMC",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Thiago\\Fitcalc\\": "fitCalc/",
+            "Controller\\": "Controller/",
+            "Model\\": "Model/"
+        },
+        "files": [
+            "Config/configuration.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "sm64isdabest",
+            "email": "thiagopinheiro301007@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">= 8.0",
+        "ext-mbstring": "*"
+    }
+}
