@@ -2,6 +2,8 @@
 
 namespace Model;
 
+use Model\Connection;
+
 use PDO;
 use PDOException;
 
@@ -26,15 +28,23 @@ class User
             // INSERÇÃO DE DADOS NA LINGUAGEM SQL
             $sql = 'INSERT INTO user (user_fullname, email, password, created_at) VALUES (:user_fullname, :email, :password, NOW())';
 
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
             // PREPARAR O BANCO DE DADOS PARA RECEBER O COMANDO ACIMA
             $conn = $this->db->prepare($sql);
 
             // REFERENCIAR OS DADOS PASSADOS PELO COMANDO SQL COM OS PARÂMETROS DA FUNÇÃO
             $conn->bindParam(":user_fullname", $user_fullname, PDO::PARAM_STR);
+            $conn->bindParam(":email", $email, PDO::PARAM_STR);
+            $conn->bindParam(":password", $hashedPassword, PDO::PARAM_STR);
+
             // EXECUTAR TUDO
+            $conn->execute();
 
         } catch (PDOException $error) {
-
+            // EXIBIR MENSAGEM DE ERRO COMPLETA E PARAR A EXECUÇÃO
+            echo "Erro ao executar o comando" . $error->getMessage();
+            return false;
         }
     }
 }
