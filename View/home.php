@@ -1,3 +1,24 @@
+<?php
+
+require_once '../vendor/autoload.php';
+
+use Model\Imcs;
+
+// CRIANDO UM OBJETO PARA REPRESENTAR CADA IMC CRIADO
+$imc = new Imcs();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['weight'], $_POST['height'])) {
+        $weight = $_POST['weight'];
+        $height = $_POST['height'];
+
+        // ROUND é igual ao toFixed() do JavaScript;
+        $result = round($weight / ($height * $height), 2);
+
+        $imc->createImc($weight, $height, $result);
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -29,7 +50,8 @@
     <header class="bgLinearGradient">
         <nav class="d-flex justify-content-between flex-md-row flex-column-reverse gap-2">
             <div class="user_info d-flex justify-content-center align-items-center gap-3">
-                <figure class="rounded-circle d-flex justify-content-center align-items-center " style="background-color: #fff3; width: 40px; height: 40px; border-radius: 50%;">
+                <figure class="rounded-circle d-flex justify-content-center align-items-center "
+                    style="background-color: #fff3; width: 40px; height: 40px; border-radius: 50%;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-person"
                         viewBox="0 0 16 16">
                         <path

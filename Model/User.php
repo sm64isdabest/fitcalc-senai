@@ -7,6 +7,8 @@ use Model\Connection;
 use PDO;
 use PDOException;
 
+require_once __DIR__ . '../../Config/configuration.php';
+
 class User
 {
     private $db;
