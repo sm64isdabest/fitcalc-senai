@@ -16,7 +16,7 @@ class ImcController
     }
 
     // CALCULO E CLASSIFICAÇÃO
-    public function calculateImc()
+    public function calculateImc($weight,$height)
     {
         try {
 
@@ -55,10 +55,6 @@ class ImcController
                         $imc >= 35 and $imc < 40 => "Obesidade grau II",
                         $imc >= 40 and $imc < 45 => "Obesidade grau III",
                         default => "Obesidade grau III"
-                    };
-
-                    $BMIresult = match (true) {
-                        $imc < 18.5 => "",
                     };
 
                 } else {
