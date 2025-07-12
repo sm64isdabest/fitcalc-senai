@@ -13,11 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $height = $_POST['height'];
 
         // ROUND é igual ao toFixed() do JavaScript;
-        $result = round($weight / ($height * $height), 2);
+        // $result = round($weight / ($height * $height), 2);
 
         $imc->createImc($weight, $height, $result);
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>
