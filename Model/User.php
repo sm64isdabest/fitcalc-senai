@@ -28,7 +28,7 @@ class User
     {
         try {
             // INSERÇÃO DE DADOS NA LINGUAGEM SQL
-            $sql = 'INSERT INTO user .(user_fullname, email, password, created_at) VALUES (:user_fullname, :email, :password, NOW())';
+            $sql = 'INSERT INTO user (user_fullname, email, password, created_at) VALUES (:user_fullname, :email, :password, NOW())';
 
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -41,7 +41,7 @@ class User
             $conn->bindParam(":password", $hashedPassword, PDO::PARAM_STR);
 
             // EXECUTAR TUDO
-            $conn->execute();
+            return $conn->execute();
 
         } catch (PDOException $error) {
             // EXIBIR MENSAGEM DE ERRO COMPLETA E PARAR A EXECUÇÃO
@@ -70,7 +70,7 @@ class User
 
     // OBTER INFORMAÇÕES DO USUÁRIO
 
-    public function getUserInfo($user_fullname, $email)
+    public function getUserInfo($id, $user_fullname, $email)
     {
         try {
             $sql = "SELECT user_fullname, email FROM user WHERE id = :id AND user_fullname = :user_fullname AND email = :email";
