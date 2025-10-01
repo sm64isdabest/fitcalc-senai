@@ -9,13 +9,13 @@ class UserController
 {
     private $userModel;
 
-    public function __construct()
+    public function __construct(User $userModel)
     {
-        $this->userModel = new User();
+        $this->userModel = $userModel;
     }
 
     // REGISTRO DE USUÁRIO
-    public function registerUser($user_fullname, $email, $password)
+    public function createUser($user_fullname, $email, $password)
     {
         try {
             if (empty($user_fullname) or empty($email) or empty($password)) {
