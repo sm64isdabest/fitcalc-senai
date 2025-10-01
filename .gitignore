@@ -1,2 +1,5 @@
 # VSCode Files
 .vscode/*
+
+# Composer
+vendor/*
